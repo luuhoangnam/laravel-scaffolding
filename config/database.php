@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'default'     => 'mysql',
+    'default'     => env('DB_DRIVER', 'mysql'),
     /*
     |--------------------------------------------------------------------------
     | Database Connections
