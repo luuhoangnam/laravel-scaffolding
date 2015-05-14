@@ -1,9 +1,15 @@
-<?php namespace App\Services;
+<?php
+
+namespace App\Services;
 
 use App\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Validator;
 
+/**
+ * Class Registrar
+ * @package App\Services
+ */
 class Registrar implements RegistrarContract
 {
 

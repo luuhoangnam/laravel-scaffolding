@@ -1,8 +1,14 @@
-<?php namespace App\Providers;
+<?php
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
+namespace App\Providers;
+
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Class EventServiceProvider
+ * @package App\Providers
+ */
 class EventServiceProvider extends ServiceProvider
 {
 
@@ -20,11 +26,11 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher $events
+     * @param  Dispatcher $events
      *
      * @return void
      */
-    public function boot(DispatcherContract $events)
+    public function boot(Dispatcher $events)
     {
         parent::boot($events);
 

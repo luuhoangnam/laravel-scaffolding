@@ -1,5 +1,13 @@
-<?php namespace App\Http\Controllers;
+<?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\View\View;
+
+/**
+ * Class WelcomeController
+ * @package App\Http\Controllers
+ */
 class WelcomeController extends Controller
 {
 
@@ -17,7 +25,6 @@ class WelcomeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -27,7 +34,7 @@ class WelcomeController extends Controller
     /**
      * Show the application welcome screen to the user.
      *
-     * @return Response
+     * @return View
      */
     public function index()
     {

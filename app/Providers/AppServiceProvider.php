@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Way\Generators\GeneratorsServiceProvider;
 
 /**
  * Class AppServiceProvider

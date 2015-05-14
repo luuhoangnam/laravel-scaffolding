@@ -1,7 +1,13 @@
-<?php namespace App\Providers;
+<?php
+
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class ConfigServiceProvider
+ * @package App\Providers
+ */
 class ConfigServiceProvider extends ServiceProvider
 {
 

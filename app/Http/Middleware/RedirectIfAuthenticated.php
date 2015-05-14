@@ -1,9 +1,15 @@
-<?php namespace App\Http\Middleware;
+<?php
+
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class RedirectIfAuthenticated
+ * @package App\Http\Middleware
+ */
 class RedirectIfAuthenticated
 {
 
@@ -19,7 +25,6 @@ class RedirectIfAuthenticated
      *
      * @param  Guard $auth
      *
-     * @return void
      */
     public function __construct(Guard $auth)
     {

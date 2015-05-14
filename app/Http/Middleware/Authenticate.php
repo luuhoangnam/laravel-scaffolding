@@ -1,8 +1,15 @@
-<?php namespace App\Http\Middleware;
+<?php
+
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
+/**
+ * Class Authenticate
+ * @package App\Http\Middleware
+ */
 class Authenticate
 {
 
@@ -18,7 +25,6 @@ class Authenticate
      *
      * @param  Guard $auth
      *
-     * @return void
      */
     public function __construct(Guard $auth)
     {
@@ -28,8 +34,8 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param  Request  $request
+     * @param  \Closure $next
      *
      * @return mixed
      */
