@@ -14,8 +14,8 @@ class SettingsTableSeeder extends Seeder
         'email'       => 'hoangnam0705@icloud.com',
         'logo'        => null,
         'navigation'  => null,
-        'activeTheme' => 'mbear',
-        'cacheTime'   => 1440,
+        'theme'       => ['active' => 'mbear'],
+        'cache'       => ['ttl' => 1440]
     ];
 
     public function run()

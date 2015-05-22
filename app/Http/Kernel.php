@@ -24,8 +24,6 @@ class Kernel extends HttpKernel
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'App\Http\Middleware\VerifyCsrfToken',
         'App\Http\Middleware\AvoidAuthentication',
-        'App\Http\Middleware\AttachAuthenticatedUser',
-        'App\Http\Middleware\Theming',
     ];
 
     /**
@@ -39,8 +37,6 @@ class Kernel extends HttpKernel
         'guest'      => 'App\Http\Middleware\RedirectIfAuthenticated',
         //
         'restricted' => 'App\Http\Middleware\CheckPermissions',
-        // Context
-        'context'    => 'App\Http\Middleware\ViewContext',
     ];
 
 }

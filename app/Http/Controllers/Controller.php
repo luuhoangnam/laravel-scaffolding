@@ -21,6 +21,5 @@ abstract class Controller extends BaseController
     public function __construct()
     {
         $this->middleware('restricted');
-        $this->middleware('context');
     }
 }

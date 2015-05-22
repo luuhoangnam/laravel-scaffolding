@@ -15,7 +15,7 @@ class Setting extends Model
     // Configurations
     //--------------------------------------------------------------------------
     protected $fillable = ['key', 'value'];
-    protected $casts = ['value' => 'object'];
+    protected $casts = ['value' => 'array'];
 
     //--------------------------------------------------------------------------
     // Accessors & Mutators

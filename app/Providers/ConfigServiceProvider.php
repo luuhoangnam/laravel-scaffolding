@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Setting;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -11,6 +12,8 @@ use Illuminate\Support\ServiceProvider;
  */
 class ConfigServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
+
     /**
      *
      */

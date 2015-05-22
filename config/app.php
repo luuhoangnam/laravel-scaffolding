@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'url'             => 'http://localhost',
+    'url'             => env('URL', 'http://localhost'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'timezone'        => 'UTC',
+    'timezone'        => env('TIMEZONE', 'UTC'),
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -132,6 +132,7 @@ return [
          * 3rd Party Service Providers...
          */
         'Laracasts\Flash\FlashServiceProvider',
+        'Laravel\Socialite\SocialiteServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -140,6 +141,9 @@ return [
         'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
+        'App\Providers\CachingServiceProvider',
+        'App\Providers\ThemeServiceProvider',
+        'App\Providers\ComposerServiceProvider',
 
     ],
     /*

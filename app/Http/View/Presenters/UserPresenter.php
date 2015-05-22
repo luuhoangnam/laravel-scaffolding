@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Http\View\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
@@ -8,7 +8,7 @@ use Laracasts\Presenter\Presenter;
  * Class UserPresenter
  *
  * @author  Nam Hoang Luu <nam@mbearvn.com>
- * @package App\Presenters
+ * @package App\Http\View\Presenters
  *
  */
 class UserPresenter extends Presenter
@@ -18,6 +18,6 @@ class UserPresenter extends Presenter
      */
     public function url()
     {
-        return route('frontend.author', [$this->entity]);
+        return route('frontend.user', [$this->entity]);
     }
 }
