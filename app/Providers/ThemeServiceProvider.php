@@ -18,7 +18,15 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $theme = $this->app['config']['settings']['theme']['active'];
+        $settings = $this->app['config']['settings'];
+
+        if ( ! isset($settings['theme']))
+            return;
+
+        if ( ! isset($settings['theme']['active']))
+            return;
+
+        $theme = $settings['theme']['active'];
 
         if ( ! $theme)
             return;
