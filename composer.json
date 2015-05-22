@@ -24,7 +24,7 @@
         "phpspec/phpspec": "~2.1",
         "barryvdh/laravel-ide-helper": "~2.0",
         "doctrine/dbal": "~2.5",
-        "way/generators": "~3.0"
+        "laracasts/generators": "~1.1"
     },
     "autoload": {
         "classmap": [

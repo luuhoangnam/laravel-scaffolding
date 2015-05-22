@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Laracasts\Generators\GeneratorsServiceProvider;
 
 /**
  * Class AppServiceProvider
@@ -21,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (env('IDE_HELPER')) {
             $this->app->register(IdeHelperServiceProvider::class);
-//            $this->app->register(GeneratorsServiceProvider::class);
+            $this->app->register(GeneratorsServiceProvider::class);
         }
     }
 

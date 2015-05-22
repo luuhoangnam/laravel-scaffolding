@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
  */
 class ThemeServiceProvider extends ServiceProvider
 {
-    protected $defer = true;
 
     /**
      * Bootstrap the application services.
