@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -15,19 +13,6 @@ use Illuminate\Http\Response;
  */
 class UsersController extends Controller
 {
-    /**
-     * @var Guard
-     */
-    private $auth;
-
-    /**
-     * @param Guard $auth
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->middleware('auth');
-        $this->auth = $auth;
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +21,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with('posts')->paginate();
+        $users = User::paginate();
 
         return $users;
     }
