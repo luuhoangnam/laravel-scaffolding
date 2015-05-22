@@ -32,6 +32,6 @@ class AuthenticationComposer
      */
     public function compose(View $view)
     {
-        $view->with('authUser', $this->auth->user());
+        $view->with('me', $this->auth->user());
     }
 }

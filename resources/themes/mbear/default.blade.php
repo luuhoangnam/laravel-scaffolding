@@ -7,8 +7,8 @@
 </head>
 <body class="{{join(' ', $bodyClasses)}}">
 
-@if($authUser)
-    <h2>Logged in as: {{$authUser->email}}</h2>
+@if($me)
+    <h2>Logged in as: {{$me->email}}</h2>
 @endif
 
 @yield('content')
