@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Setting;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -10,6 +11,21 @@ use Illuminate\Support\ServiceProvider;
  */
 class ConfigServiceProvider extends ServiceProvider
 {
+    /**
+     *
+     */
+    public function boot()
+    {
+        $settings = $this->app->make('cache.store')->tags('settings')->rememberForever('settings', function () {
+            try {
+                return Setting::all(['key', 'value'])->lists('value', 'key');
+            } catch ( \Exception $e ) {
+                return [];
+            }
+        });
+
+        config(['settings' => $settings]);
+    }
 
     /**
      * Overwrite any vendor / package configuration.

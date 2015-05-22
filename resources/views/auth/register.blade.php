@@ -1,4 +1,4 @@
-@extends('app')
+@extends('frontend.php')
 
 @section('content')
 <div class="container-fluid">

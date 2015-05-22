@@ -8,6 +8,15 @@ use Illuminate\Database\Seeder;
  */
 class DatabaseSeeder extends Seeder
 {
+    protected $tables = [
+        'failed_jobs',
+        'password_resets',
+        'permission_role',
+        'permissions',
+        'roles',
+        'settings',
+        'users',
+    ];
 
     /**
      * Run the database seeds.
@@ -18,7 +27,17 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call('UserTableSeeder');
+        \DB::statement('SET foreign_key_checks = 0;');
+
+        foreach ($this->tables as $table) {
+            \DB::table($table)->truncate();
+        }
+
+        $this->call('SettingsTableSeeder');
+        $this->call('PermissionsSeeder');
+        $this->call('UsersTableSeeder');
+
+        \DB::statement('SET foreign_key_checks = 1;');
     }
 
 }

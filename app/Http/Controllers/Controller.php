@@ -15,4 +15,12 @@ abstract class Controller extends BaseController
 
     use DispatchesCommands, ValidatesRequests;
 
+    /**
+     * Global constructor for all controllers
+     */
+    public function __construct()
+    {
+        $this->middleware('restricted');
+        $this->middleware('context');
+    }
 }
