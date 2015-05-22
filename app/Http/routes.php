@@ -31,14 +31,8 @@ Route::group(['prefix' => 'oauth/{provider}'], function () {
 
 // Api routes
 Route::group(['prefix' => 'api'], function () {
-    // ## Posts
-    Route::resource('posts', 'Api\PostsController', ['except' => ['create', 'edit']]);
-
     // ## Users
     Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
-
-    // ## Tags
-    Route::resource('tags', 'Api\TagsController', ['except' => ['create', 'edit']]);
 
     // ## Settings
     Route::get('settings', 'Api\SettingsController@index');
