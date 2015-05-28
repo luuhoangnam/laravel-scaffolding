@@ -133,6 +133,7 @@ return [
          */
         'Laracasts\Flash\FlashServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
+        'Vinkla\Algolia\AlgoliaServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -197,6 +198,7 @@ return [
          * 3rd Party Facades...
          */
         'Flash'     => 'Laracasts\Flash\Flash',
+        'Algolia'   => 'Vinkla\Algolia\Facades\Algolia',
     ],
 
 ];

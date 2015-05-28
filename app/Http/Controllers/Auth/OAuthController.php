@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\SocialiteManager;
 use Laravel\Socialite\Two\User as OAuthUser;
+use Redirect;
 
 /**
  * Class OAuthController
@@ -47,6 +48,8 @@ class OAuthController extends Controller
     {
         $this->socialite = $socialite;
         $this->auth      = $auth;
+
+        $this->middleware('guest');
     }
 
     /**
@@ -83,22 +86,31 @@ class OAuthController extends Controller
         /** @var OAuthUser $oauthUser */
         $oauthUser = $this->socialite->with($provider)->user();
 
-        // Find user
-        if ( ! ($user = User::findByFacebookId($oauthUser->getId()))) {
-            $user = new User;
+        if (($user = User::findByEmail($oauthUser->getEmail()))) {
 
-            $user->facebook_id = $oauthUser->getId();
+        } else if ( ! ($user = User::findByFacebookId($oauthUser->getId()))) {
+            $user = new User;
         }
 
-        $user->name                  = $oauthUser->getName();
-        $user->email                 = $oauthUser->getEmail();
+        $user->facebook_id = $oauthUser->getId();
+
+        if ( ! $user->name)
+            $user->name = $oauthUser->getName();
+
+        if ( ! $user->email)
+            $user->email = $oauthUser->getEmail();
+
         $user->facebook_access_token = $oauthUser->token;
+
+        if ( ! $user->role_id)
+            $user->role_id = setting('registration')['role'];
+
         $user->save();
 
         // Sign user in
         $this->auth->login($user, true);
 
-        return redirect('/');
+        return Redirect::intended('/');
     }
 
     /**
