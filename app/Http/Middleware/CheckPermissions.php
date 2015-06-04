@@ -36,24 +36,24 @@ class CheckPermissions
      */
     public function handle($request, Closure $next)
     {
-        /** @var User $user */
-        $user = $this->auth->user();
-
-        $uri    = $request->route()->uri();
-        $method = $request->method();
-
-        $rules = array_filter(config('permissions.routes', []), function ($rule) use ($uri, $method) {
-            return $rule['uri'] === $uri && in_array($method, explode('|', $rule['method']));
-        });
-
-        foreach ($rules as $rule) {
-
-            foreach ($rule['permissions'] as $resource => $permissions) {
-                if ( ! $user->can($resource, $permissions))
-                    abort(403);
-            }
-
-        }
+//        /** @var User $user */
+//        $user = $this->auth->user();
+//
+//        $uri    = $request->route()->uri();
+//        $method = $request->method();
+//
+//        $rules = array_filter(config('permissions.routes', []), function ($rule) use ($uri, $method) {
+//            return $rule['uri'] === $uri && in_array($method, explode('|', $rule['method']));
+//        });
+//
+//        foreach ($rules as $rule) {
+//
+//            foreach ($rule['permissions'] as $resource => $permissions) {
+//                if ( ! $user->can($resource, $permissions))
+//                    abort(403);
+//            }
+//
+//        }
 
         return $next($request);
     }

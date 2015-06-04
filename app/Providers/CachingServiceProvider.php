@@ -10,6 +10,7 @@ use App\Support\Observers\Cacher;
 use App\Tag;
 use App\User;
 use Illuminate\Support\ServiceProvider;
+use ReflectionClass;
 
 /**
  * Class CachingServiceProvider
@@ -21,19 +22,21 @@ class CachingServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      *
-     * @return void
+     * @throws \LogicException
      */
     public function boot()
     {
-        $models = [
-            Permission::class,
-            Role::class,
-            Setting::class,
-            User::class,
-        ];
+        $tables = config('cache.auto_flush');
 
-        foreach ($models as $model) {
-            forward_static_call([$model, 'observe'], $this->app->make(Cacher::class));
+        foreach ($tables as $table) {
+            $model = "\\App\\" . studly_case(str_singular($table));
+
+            $reflection = new ReflectionClass($model);
+
+            if ($reflection->getParentClass()->getName() != 'Illuminate\Database\Eloquent\Model')
+                throw new \LogicException("{$model} must be inherit from Illuminate\\Database\\Eloquent\\Model");
+
+            $model::observe($this->app->make(Cacher::class));
         }
     }
 

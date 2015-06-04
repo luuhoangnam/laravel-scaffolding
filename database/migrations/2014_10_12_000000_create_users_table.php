@@ -25,9 +25,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            //
+            $table->string('avatar')->nullable();
+            $table->text('bio')->nullable();
+
             // Social
             $table->string('facebook_id')->nullable();
             $table->string('facebook_access_token')->nullable();
+
+            // Permissions
+            $table->binary('permissions');
         });
     }
 

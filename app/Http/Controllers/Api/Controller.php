@@ -19,15 +19,14 @@ abstract class Controller extends BaseController
     /**
      * @var Guard
      */
-    private $auth;
+    protected $auth;
 
     /**
      * @param Guard $auth
      */
     public function __construct(Guard $auth)
     {
-        $this->middleware('auth');
-        $this->middleware('restricted');
+//        $this->middleware('auth');
         $this->auth = $auth;
     }
 }

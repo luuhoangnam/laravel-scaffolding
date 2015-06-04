@@ -19,7 +19,8 @@
         "barryvdh/laravel-debugbar": "~2.0",
         "laracasts/presenter": "~0.2",
         "vinkla/algolia": "^1.1",
-        "fzaninotto/faker": "~1.4"
+        "fzaninotto/faker": "~1.4",
+        "league/oauth2-server": "^4.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",

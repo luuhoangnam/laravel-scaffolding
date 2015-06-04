@@ -1,9 +1,20 @@
 <?php
 
-Route::controllers([
-    'auth'     => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+/**
+ * --------------------------------------------------------------------------
+ * Auth
+ * --------------------------------------------------------------------------
+ */
+Route::group(['prefix' => 'auth'], function () {
+
+    Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\SessionsController@create']);
+    Route::post('login', ['as' => 'auth.login', 'uses' => 'Auth\SessionsController@store']);
+    Route::get('logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionsController@destroy']);
+
+    Route::get('register', ['as' => 'auth.register', 'uses' => 'Auth\AccountsController@create']);
+    Route::post('register', ['as' => 'auth.register', 'uses' => 'Auth\AccountsController@store']);
+
+});
 
 /**
  * --------------------------------------------------------------------------
@@ -30,24 +41,28 @@ Route::group(['prefix' => 'oauth/{provider}'], function () {
 });
 
 // Api routes
-Route::group(['prefix' => 'api'], function () {
-    // ## Users
-    Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
+//Route::group(['prefix' => 'api'], function () {
+//    // ## Users
+//    Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
+//
+//    // ## Settings
+//    Route::get('settings', 'Api\SettingsController@index');
+//    Route::put('settings', 'Api\SettingsController@update');
+//
+//    // ## Slugs
+//    Route::get('slugs/{type}/{name}', 'Api\SlugsController@generate');
+//});
 
-    // ## Settings
-    Route::get('settings', 'Api\SettingsController@index');
-    Route::get('settings/{key}', 'Api\SettingsController@show');
-    Route::put('settings', 'Api\SettingsController@update');
+// ## Files
+Route::post('files/{name?}', [
+    'as'   => 'upload',
+    'uses' => 'FilesController@store'
+]);
 
-    // ## Slugs
-    Route::get('slugs/{type}/{name}', 'Api\SlugsController@generate');
-
-    // ## Upload
-    Route::post('uploads', ['as' => 'upload', 'uses' => 'Api\UploadController@store']);
-});
-
-// Admin routes
-Route::get('administrator', 'AdminController@index');
+//Route::get('files/{id}/{name}', [
+//    'as'   => 'file',
+//    'uses' => 'FilesController@serve'
+//])->where(['id' => '^[a-z0-9-]+$', 'name' => '.+']);
 
 // Frontend routes
-Route::get('/', ['as' => 'frontend.home', 'uses' => 'FrontendController@home']);
+Route::get('/', ['as' => 'home', 'uses' => 'FrontendController@home']);

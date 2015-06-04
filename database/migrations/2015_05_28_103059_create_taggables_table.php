@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Class CreatePasswordResetsTable
+ * Class CreateTaggablesTable
  */
-class CreatePasswordResetsTable extends Migration
+class CreateTaggablesTable extends Migration
 {
 
     /**
@@ -16,10 +16,10 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token')->index();
-            $table->timestamp('created_at');
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->unsignedInteger('tag_id');
+            $table->unsignedInteger('taggable_id');
+            $table->string('taggable_type');
         });
     }
 
@@ -30,7 +30,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('password_resets');
+        Schema::drop('taggables');
     }
 
 }

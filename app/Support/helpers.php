@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
+
 if ( ! function_exists('json')) {
     /**
      * Respond json response
@@ -9,11 +12,11 @@ if ( ! function_exists('json')) {
      * @param array       $headers
      * @param int         $options
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     function json($data = null, $status = 200, $headers = [], $options = 0)
     {
-        return new \Illuminate\Http\JsonResponse($data, $status, $headers, $options);
+        return new JsonResponse($data, $status, $headers, $options);
     }
 }
 
@@ -67,6 +70,32 @@ if ( ! function_exists('parsedown')) {
         return $parser->text($markdown);
     }
 }
+
+if ( ! function_exists('viewext')) {
+    /**
+     * @param string|array $view
+     * @param array        $data
+     * @param array        $mergeData
+     *
+     * @return \Illuminate\View\View
+     */
+    function viewext($view = null, $data = [], $mergeData = [])
+    {
+        $parts = $view;
+
+        if (is_string($view))
+            $parts = [$view];
+
+        do {
+            $view = join('-', $parts);
+
+            array_pop($parts);
+        } while ( ! view()->exists($view) && count($parts));
+
+        return view($view, $data, $mergeData);
+    }
+}
+
 
 
 

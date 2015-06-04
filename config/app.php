@@ -145,6 +145,7 @@ return [
         'App\Providers\CachingServiceProvider',
         'App\Providers\ThemeServiceProvider',
         'App\Providers\ComposerServiceProvider',
+        'App\Providers\SlugServiceProvider',
 
     ],
     /*

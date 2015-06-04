@@ -2,12 +2,6 @@
 
 return [
     'routes' => [
-        // Admin
-//        [
-//            'method' => 'GET|HEAD',
-//            'uri'    => 'admin',
-//            'role'   => 'Administrator',
-//        ],
         // API
         // ## Users
         [
@@ -35,56 +29,28 @@ return [
             'uri'         => 'api/users/{users}',
             'permissions' => ['user' => 'destroy'],
         ],
-        // ## Slugs
-        [
-            'method'      => 'GET|HEAD',
-            'uri'         => 'api/slugs/{type}/{name}',
-            'permissions' => ['slug' => 'generate'],
-        ],
         // ## Settings
         [
             'method'      => 'GET|HEAD',
             'uri'         => 'api/settings',
-            'permissions' => ['setting' => 'browse'],
+            'permissions' => 'manage_users',
         ],
         [
             'method'      => 'GET|HEAD',
             'uri'         => 'api/settings/{key}',
-            'permissions' => ['setting' => 'read'],
+            'permissions' => 'manage_users',
         ],
         [
             'method'      => 'PUT',
             'uri'         => 'api/settings',
-            'permissions' => ['setting' => 'edit'],
+            'permissions' => 'manage_users',
         ],
         // ## Roles
         [
             'method'      => 'GET|HEAD',
             'uri'         => 'api/roles',
-            'permissions' => ['role' => 'browse'],
+            'permissions' => 'manage_users',
         ],
-        // ## Uploads
-        [
-            'method'      => 'POST',
-            'uri'         => 'api/uploads',
-            'permissions' => ['upload' => 'store'],
-        ],
-        // Frontend (not restricted)
-//        [
-//            'method'      => 'GET',
-//            'uri'         => 'author/{slug}',
-//            'permissions' => ['user' => 'read'],
-//        ],
-//        [
-//            'method'      => 'GET',
-//            'uri'         => 'tag/{slug}',
-//            'permissions' => ['tag' => 'read'],
-//        ],
-//        [
-//            'method'      => 'GET',
-//            'uri'         => '{slug}',
-//            'permissions' => ['post' => 'read'],
-//        ],
     ]
 ];
 

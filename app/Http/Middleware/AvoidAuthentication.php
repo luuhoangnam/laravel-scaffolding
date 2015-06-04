@@ -35,7 +35,10 @@ class AvoidAuthentication
      */
     public function handle($request, Closure $next)
     {
-        $this->auth->login(User::first());
+        $me = User::first();
+
+        if ($me)
+            $this->auth->login($me);
 
         return $next($request);
     }

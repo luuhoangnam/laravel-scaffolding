@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
+use App\Services\SlugGenerator;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -15,26 +16,20 @@ class SlugsController extends Controller
     /**
      * Create a unique slug for the given type and its name
      *
-     * @param string $type
-     * @param string $name
+     * @param SlugGenerator $slugs
+     * @param string        $type
+     * @param string        $name
      *
      * @return JsonResponse
      */
-    public function generate($type, $name)
+    public function generate(SlugGenerator $slugs, $type, $name)
     {
-        if ( ! in_array($type, ['post', 'user', 'tag']))
+        $validTypes = ['post', 'user', 'tag'];
+
+        if ( ! in_array($type, $validTypes))
             abort(404);
 
-        $modelClass = "\\App\\" . studly_case($type);
-
-        $suffix = '';
-        $slug   = str_slug($name);
-
-        do {
-            $slug .= ($suffix ? '' : '-') . $suffix;
-
-            $suffix = mt_rand(0, 9);
-        } while (forward_static_call([$modelClass, 'findBySlug'], $slug, ['id']));
+        $slug = $slugs->generate(str_plural($type), $name);
 
         return json(['slug' => $slug]);
     }

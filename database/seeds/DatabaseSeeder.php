@@ -11,9 +11,6 @@ class DatabaseSeeder extends Seeder
     protected $tables = [
         'failed_jobs',
         'password_resets',
-        'permission_role',
-        'permissions',
-        'roles',
         'settings',
         'users',
     ];
@@ -34,7 +31,6 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call('SettingsTableSeeder');
-        $this->call('PermissionsSeeder');
         $this->call('UsersTableSeeder');
 
         \DB::statement('SET foreign_key_checks = 1;');

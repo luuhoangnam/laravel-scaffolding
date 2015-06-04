@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreatePermissionsTable
+ * Class CreateTagsTable
  */
-class CreatePermissionsTable extends Migration
+class CreateTagsTable extends Migration
 {
 
     /**
@@ -16,17 +16,10 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slug')->unique();
             $table->string('name');
-
-            // Resource
-            $table->string('resource');
-
-            // Action
-            $table->string('action');
-
-            // Timestamps
             $table->timestamps();
         });
     }
@@ -38,7 +31,7 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('permissions');
+        Schema::drop('tags');
     }
 
 }

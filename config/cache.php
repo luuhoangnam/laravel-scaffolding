@@ -1,7 +1,14 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Auto Flush by Cache Tags Appropriate to Eloquent Models
+    |--------------------------------------------------------------------------
+    |
+    */
 
+    'auto_flush' => ['settings', 'users', 'tags'],
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store
@@ -13,7 +20,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default'    => env('CACHE_DRIVER', 'file'),
     /*
     |--------------------------------------------------------------------------
     | Cache Stores
@@ -25,7 +32,7 @@ return [
     |
     */
 
-    'stores'  => [
+    'stores'     => [
 
         'apc'       => [
             'driver' => 'apc'
@@ -69,6 +76,6 @@ return [
     |
     */
 
-    'prefix'  => 'laravel',
+    'prefix'     => 'laravel',
 
 ];

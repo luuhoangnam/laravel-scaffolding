@@ -2,19 +2,24 @@
 
 namespace App;
 
+use App\Http\View\Presenters\TagPresenter;
+use App\Support\ModelTraits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laracasts\Presenter\PresentableTrait;
 
 /**
- * Class Role
+ * Class Tag
  * @package App
  */
-class Role extends Model
+class Tag extends Model
 {
+    use HasSlug, PresentableTrait;
 
     //--------------------------------------------------------------------------
     // Configurations
     //--------------------------------------------------------------------------
+    protected $presenter = TagPresenter::class;
+    protected $fillable = ['slug', 'name'];
 
 
     //--------------------------------------------------------------------------
@@ -25,13 +30,6 @@ class Role extends Model
     //--------------------------------------------------------------------------
     // Relationships
     //--------------------------------------------------------------------------
-    /**
-     * @return BelongsToMany
-     */
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
 
 
     //--------------------------------------------------------------------------

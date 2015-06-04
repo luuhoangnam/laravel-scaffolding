@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 /**
  * Class UsersController
@@ -17,26 +18,37 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate();
+        $fields = $request->has('fields') ? explode(',', $request->get('fields')) : [];
+        $users  = User::apply($request)->get();
 
-        return $users;
+        $res = new Collection;
+        foreach ($users as $user) {
+            $res[] = $user->toApi($fields);
+        }
+
+        return $res;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param User $user
+     * @param int $id
      *
      * @return Response
      *
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return $user;
+        if(($user = User::find($id)))
+            abort(404);
+
+        return $user->toApi();
     }
 
     /**

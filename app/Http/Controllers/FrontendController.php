@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Post;
 use App\Tag;
 use App\User;
 use Illuminate\Cache\TaggableStore;
@@ -36,7 +35,7 @@ class FrontendController extends Controller
      */
     public function home()
     {
-        return view('home');
+        return viewext('home');
     }
 
 }
